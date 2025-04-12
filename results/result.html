@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Your Result</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../script.js"></script>
+</head>
+<body onload="showResult()">
+  <h1>Determining your fungi type...</h1>
+  <p>Growing the result through the network... 🍄</p>
+  <script>
+    function showResult() {
+      let score = JSON.parse(localStorage.getItem("score"));
+      if (!score) {
+        document.body.innerHTML = '<h1>Oops! 🌱</h1><p>No data found. Please restart the quiz from the beginning.</p><a href="../index.html">↩️ Go back to start</a>';
+        return;
+      }
+      let result = Object.entries(score).sort((a,b) => b[1]-a[1])[0][0];
+      window.location.href = `./${result}.html`;
+    }
+  </script>
+</body>
+</html>
